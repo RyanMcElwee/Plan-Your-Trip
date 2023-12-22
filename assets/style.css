@@ -1,0 +1,4 @@
+/* Universal property that sets generic font */
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
