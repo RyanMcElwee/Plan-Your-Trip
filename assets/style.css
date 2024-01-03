@@ -83,6 +83,8 @@ input {
 .information {
     width: 75%;
     margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Properties for the buttons within the information section */
@@ -94,6 +96,8 @@ input {
     border-style: none;
     margin-top: 0.5rem;
     border-radius: 0.5rem;
+    width: 20%;
+    align-self: flex-end;
 }
 
 /* Properties for when the buttons is hovered */
