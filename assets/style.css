@@ -29,3 +29,75 @@ input {
     justify-content: center;
     align-items: center;
 }
+
+/* Properties for the main section of page */
+.container {
+    margin: 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+/* Properties for the search history area */
+.search-history {
+    width: 20%;
+}
+
+/* Properties for buttons in the search history area */
+.city {
+    font-size: 1rem;
+    width: 100%;
+    padding: 1rem;
+    background-color: cadetblue;
+    color: white;
+    border-style: none;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+/* Properties for when the buttons are hovered */
+.city:hover {
+    background-color: darkcyan;
+    cursor: pointer;
+}
+
+/* Properties for clear button in search history area */
+.clear-button {
+    font-size: 1rem;
+    width: 100%;
+    padding: 1rem;
+    background-color: burlywood;
+    color: white;
+    border-style: none;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+/* Properties for clear button hover*/
+.clear-button:hover {
+    background-color: peru;
+    cursor: pointer;
+}
+
+/* Properties for the main information area */
+.information {
+    width: 75%;
+    margin-left: 2rem;
+}
+
+/* Properties for the buttons within the information section */
+.information button {
+    font-size: 1rem;
+    padding: 1rem;
+    background-color: burlywood;
+    color: white;
+    border-style: none;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+/* Properties for when the buttons is hovered */
+.information button:hover {
+    background-color: peru;
+    cursor: pointer;
+}
