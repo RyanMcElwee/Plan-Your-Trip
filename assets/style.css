@@ -1,4 +1,146 @@
-/* Universal property that sets generic font */
+/* Universal property that sets generic font and 0 margin */
 * {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+}
+
+/* Properties for the header */
+header {
+    text-align: center;
+    font-weight: bold;
+    margin: 1rem;
+}
+
+/* Properties for the input area */
+input {
+    border-style: none;
+    padding: 0.5rem;
+}
+
+/* Area for the city cover image */
+.city-image {
+    /* Uses placeholder image link for the time being */
+    /* Not sure how we can link the images from the Teleporter API? */
+    background-image: url("https://loremflickr.com/640/360");
+    background-size: cover;
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Properties for the main section of page */
+.container {
+    margin: 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Properties for the search history area */
+.search-history {
+    width: 20%;
+    margin-right: 2rem;
+}
+
+/* Properties for buttons in the search history area */
+.city {
+    font-size: 1rem;
+    width: 100%;
+    padding: 1rem;
+    background-color: cadetblue;
+    color: white;
+    border-style: none;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+/* Properties for when the buttons are hovered */
+.city:hover {
+    background-color: darkcyan;
+    cursor: pointer;
+}
+
+/* Properties for clear button in search history area */
+.clear-button {
+    font-size: 1rem;
+    width: 100%;
+    padding: 1rem;
+    background-color: burlywood;
+    color: white;
+    border-style: none;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+/* Properties for clear button hover*/
+.clear-button:hover {
+    background-color: peru;
+    cursor: pointer;
+}
+
+/* Properties for the main information area */
+.information {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Properties for the buttons within the information section */
+.information button {
+    font-size: 1rem;
+    padding: 1rem;
+    background-color: burlywood;
+    color: white;
+    border-style: none;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+    width: 29%;
+    align-self: flex-end;
+}
+
+/* Properties for when the buttons is hovered */
+.information button:hover {
+    background-color: peru;
+    cursor: pointer;
+}
+
+/* Properties for the areas where TripAdvisor API information will be generated */
+.card {
+    border-style: solid;
+    border-color: darkgray;
+    width: 40%;
+    height: 125px;
+    margin: 0.5rem;
+    padding: 1rem;
+}
+
+/* Responsive breakpoints */
+@media screen and (max-width: 768px) {
+.search-history {
+    width: 30%
+}
+
+.information {
+    width: 60%;
+}
+
+.information button {
+    width: 50%
+}
+}
+
+@media screen and (max-width: 576px) {
+.card,
+.search-history,
+.information {
+    width: 100%;
+    margin-right: 0;
+}
+
+.information button {
+    width: 50%
+}
 }
