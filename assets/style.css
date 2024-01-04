@@ -36,11 +36,13 @@ input {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* Properties for the search history area */
 .search-history {
     width: 20%;
+    margin-right: 2rem;
 }
 
 /* Properties for buttons in the search history area */
@@ -81,8 +83,7 @@ input {
 
 /* Properties for the main information area */
 .information {
-    width: 75%;
-    margin-left: 2rem;
+    width: 70%;
     display: flex;
     flex-direction: column;
 }
@@ -96,7 +97,7 @@ input {
     border-style: none;
     margin-top: 0.5rem;
     border-radius: 0.5rem;
-    width: 20%;
+    width: 29%;
     align-self: flex-end;
 }
 
@@ -104,4 +105,42 @@ input {
 .information button:hover {
     background-color: peru;
     cursor: pointer;
+}
+
+/* Properties for the areas where TripAdvisor API information will be generated */
+.card {
+    border-style: solid;
+    border-color: darkgray;
+    width: 40%;
+    height: 125px;
+    margin: 0.5rem;
+    padding: 1rem;
+}
+
+/* Responsive breakpoints */
+@media screen and (max-width: 768px) {
+.search-history {
+    width: 30%
+}
+
+.information {
+    width: 60%;
+}
+
+.information button {
+    width: 50%
+}
+}
+
+@media screen and (max-width: 576px) {
+.card,
+.search-history,
+.information {
+    width: 100%;
+    margin-right: 0;
+}
+
+.information button {
+    width: 50%
+}
 }
