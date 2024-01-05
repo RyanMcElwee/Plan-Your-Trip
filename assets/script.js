@@ -1,54 +1,6 @@
-/* function searchLocations() {
-const options = {method: 'GET', headers: {accept: 'application/json'}};
-
-fetch('https://api.content.tripadvisor.com/api/v1/location/search?key=https%3A%2F%2Fapi.teleport.org%2Fapi%2F%29&key=43C01EC640F049D2B42D2AF0EA110DEE&searchQuery=Japan&category=flights&language=en', options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
-
-  // code to search locations 
-}
-
-function locationDetails() {
-  const options = {method: 'GET', headers: {accept: 'application/json'}};
-
-fetch('https://api.content.tripadvisor.com/api/v1/location/15263873/details?key=https%3A%2F%2Fapi.teleport.org%2Fapi%2F&key=43C01EC640F049D2B42D2AF0EA110DEE&language=en&currency=USD', options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
-
-  //code for location details
-}
-
-function locationPhotos() {
-  const options = {method: 'GET', headers: {accept: 'application/json'}};
-
-fetch('https://api.content.tripadvisor.com/api/v1/location/15263873/photos?key=https%3A%2F%2Fapi.teleport.org%2Fapi%2F&key=43C01EC640F049D2B42D2AF0EA110DEE&language=en', options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
-
-  //code for location photos
-}
-
-function locationReviews() {
-  const options = {method: 'GET', headers: {accept: 'application/json'}};
-
-fetch('https://api.content.tripadvisor.com/api/v1/location/15263873/reviews?key=https%3A%2F%2Fapi.teleport.org%2Fapi%2F&key=43C01EC640F049D2B42D2AF0EA110DEE&language=en', options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
-
-  //code for location reviews
-}
-
-searchLocations();
-locationDetails();
-locationPhotos();
-locationReviews(); */
-
-// Calls out input area within HTML and the inputted value
+// Grabs certain areas within the HTML
 var searchCity = $(".city-search");
+var coverImage = $(".city-image");
 
 // Function for helping the user select a proper city to match with Teleport API
 function autocompleteSearch() {
@@ -82,12 +34,21 @@ function autocompleteSearch() {
     searchCity.autocomplete({
       source: availableCities
     });
+
+    // Event listener when the user hits the Enter key, 
+    searchCity.on('keydown', (event) => {
+        if (event.key === 'Enter') {
+            cityImage();
+        }
+    });
 }
 
-autocompleteSearch();
-
+// For fetching the current city's background image
 function cityImage() {
-    var requestUrl = "https://api.teleport.org/api/urban_areas/?embed=ua:item/ua:images";
+    // Since the API's link uses dashes in between words instead of spaces, we convert the spaces into dashes
+    var convertToDashes = searchCity.val().replace(/\s+/g, '-');
+    // Then within the URL, changing the case to lowercase to match the API link
+    var requestUrl = "https://api.teleport.org/api/urban_areas/slug:" + convertToDashes.toLowerCase() + "/images/";
 
     fetch(requestUrl)
         .then(function (response) {
@@ -95,7 +56,11 @@ function cityImage() {
         })
         .then(function (data) {
         console.log(data);
+
+        // Pinpoints the exact location of the URL needed from the data to show the current city's background image
+        var backgroundImageUrl = data.photos[0].image.web;
+        coverImage.css("background-image", "url(" + backgroundImageUrl + ")");
     })
 }
 
-cityImage();
+autocompleteSearch();
