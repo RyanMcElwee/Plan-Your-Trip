@@ -2,6 +2,9 @@
 var searchCity = $(".city-search");
 var coverImage = $(".city-image");
 
+// Starting cover image until city is searched
+coverImage.css("background-image", "url('assets/images/world-image.jpg')");
+
 // Function for helping the user select a proper city to match with Teleport API
 function autocompleteSearch() {
     var availableCities = [
