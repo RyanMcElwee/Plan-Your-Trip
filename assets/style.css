@@ -6,16 +6,22 @@
 
 /* Properties for the header */
 header {
-    text-align: center;
-    font-weight: bold;
     margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* To make the h1 tag not extremely giant */
+header h1 {
+    font-size: x-large;
 }
 
 /* Properties for the input area */
 input {
     border-style: none;
     padding: 0.5rem;
-    width: 200px;
+    width: 220px;
     height: 30px;
     text-align: center;
     font-size: 1rem;
@@ -24,10 +30,8 @@ input {
 
 /* Area for the city cover image */
 .city-image {
-    /* Uses placeholder image link for the time being */
-    /* Not sure how we can link the images from the Teleporter API? */
-    background-image: url("https://loremflickr.com/640/360");
     background-size: cover;
+    background-position: center;
     width: 100%;
     height: 250px;
     display: flex;
