@@ -85,3 +85,17 @@ function autocompleteSearch() {
 }
 
 autocompleteSearch();
+
+function cityImage() {
+    var requestUrl = "https://api.teleport.org/api/urban_areas/?embed=ua:item/ua:images";
+
+    fetch(requestUrl)
+        .then(function (response) {
+        return response.json();
+        })
+        .then(function (data) {
+        console.log(data);
+    })
+}
+
+cityImage();
