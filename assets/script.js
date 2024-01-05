@@ -50,7 +50,7 @@ function autocompleteSearch() {
 function cityImage() {
     // Since the API's link uses dashes in between words instead of spaces, we convert the spaces into dashes
     // Also gets rid of a comma if a searched city has one
-    var convertToDashes = searchCity.val().replace(/[\s,]+/g, '-');
+    var convertToDashes = searchCity.val().replace(/[\s,]+/g, '-').replace(/\.+/g, '');
     // Then within the URL, changing the case to lowercase to match the API link
     var requestUrl = "https://api.teleport.org/api/urban_areas/slug:" + convertToDashes.toLowerCase() + "/images/";
 
