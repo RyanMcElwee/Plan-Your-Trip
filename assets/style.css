@@ -149,6 +149,25 @@ hr {
     margin-bottom: 1rem;
 }
 
+/* Making some space between the information and the line */
+.city-summary {
+    margin-top: 1rem;
+}
+
+/* Container properties for the score area */
+.scores-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 1rem;
+}
+
+/* Making the scores be side-by-side since there are so many */
+.scores-left,
+.scores-right {
+    width: 50%;
+}
+
 /* Responsive breakpoints */
 @media screen and (max-width: 768px) {
 .search-history {
