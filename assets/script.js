@@ -1,6 +1,8 @@
 // Grabs certain areas within the HTML
 var searchCity = $(".city-search");
 var coverImage = $(".city-image");
+var cityLabel = $(".city-state-country");
+var population = $(".population");
 
 // Starting cover image until city is searched
 coverImage.css("background-image", "url('assets/images/world-image.jpg')");
@@ -42,6 +44,7 @@ function autocompleteSearch() {
     searchCity.on('keydown', (event) => {
         if (event.key === 'Enter') {
             cityImage();
+            basicInfo();
         }
     });
 }
@@ -64,6 +67,42 @@ function cityImage() {
         // Pinpoints the exact location of the URL needed from the data to show the current city's background image
         var backgroundImageUrl = data.photos[0].image.web;
         coverImage.css("background-image", "url(" + backgroundImageUrl + ")");
+    })
+}
+
+// Function for fetching and adding the basic information from Teleport API
+function basicInfo() {
+    // Fetching the city's location to pull geonameid for the basic information API
+    var requestUrl = "https://api.teleport.org/api/cities/?search=" + searchCity.val().toLowerCase();
+
+    fetch(requestUrl)
+        .then(function (response) {
+        return response.json();
+        })
+        .then(function (data) {
+        console.log(data);
+
+        // Grabs the URL for finding out the geonameid for the basic info API
+        var geoNameIdUrl = data._embedded['city:search-results'][0]._links['city:item'].href;
+        
+        // Fetches the basic information API
+        fetch(geoNameIdUrl)
+            .then(function (response) {
+            return response.json();
+            })
+            .then(function (data) {
+            console.log(data);
+
+            cityLabel.text(data['full_name']);
+            population.text("Population: " + data.population);
+            $(".line-separator").attr("style", "display: block");
+            })
+            // Cannot figure out how to display message if a location has an error
+            /* .catch(function (error) {
+                if (error instanceof TypeError) {
+                cityLabel.text("No basic information to show for this location.");
+                }
+            }) */
     })
 }
 
