@@ -97,13 +97,15 @@ function basicInfo() {
             population.text("Population: " + data.population);
             $(".line-separator").attr("style", "display: block");
             })
-            // Cannot figure out how to display message if a location has an error
-            /* .catch(function (error) {
-                if (error instanceof TypeError) {
-                cityLabel.text("No basic information to show for this location.");
-                }
-            }) */
-    })
+        })
+        // Displays a message when a location doesn't match the geoNameIdUrl
+        .catch(function (error) {
+            if (error instanceof TypeError) {
+            cityLabel.text("No basic information to show for this location.");
+            population.text("");
+            $(".line-separator").attr("style", "display: block");
+            }
+        })
 }
 
 autocompleteSearch();
