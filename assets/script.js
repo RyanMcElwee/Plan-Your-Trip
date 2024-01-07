@@ -49,6 +49,7 @@ function autocompleteSearch() {
             cityImage();
             basicInfo();
             qualityOfLife();
+            viewFlights();
         }
     });
 }
@@ -132,8 +133,7 @@ function qualityOfLife() {
     var roundedNumber = Math.floor(cityScore);
 
     citySummary.html(data.summary + "\n<b>City Score:</b> " + roundedNumber + "%");
-    // Pulls and displays all the different scores
-    scoresLeft.html("</p>" + data.categories[0].name + ": " + Math.floor(data.categories[0]['score_out_of_10']) + " / 10" + "</p>"
+    scoresLeft.html("</p>" + data.categories[0].name + ": " + Math.floor(data.categories[1]['score_out_of_10']) + " / 10" + "</p>"
     + "<p>" + data.categories[1].name + ": " + Math.floor(data.categories[1]['score_out_of_10']) + " / 10" + "</p>"
     + "<p>" + data.categories[2].name + ": " + Math.floor(data.categories[2]['score_out_of_10']) + " / 10" + "</p>"
     + "<p>" + data.categories[3].name + ": " + Math.floor(data.categories[3]['score_out_of_10']) + " / 10" + "</p>"
@@ -151,6 +151,11 @@ function qualityOfLife() {
     + "<p>" + data.categories[15].name + ": " + Math.floor(data.categories[15]['score_out_of_10']) + " / 10" + "</p>"
     + "<p>" + data.categories[16].name + ": " + Math.floor(data.categories[16]['score_out_of_10']) + " / 10" + "</p>");
     })
+}
+
+// Function for displaying button that takes you to viewing flight information from second API
+function viewFlights() {
+    $(".view-flights").attr("style", "display: block");
 }
 
 autocompleteSearch();
