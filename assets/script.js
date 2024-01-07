@@ -1,6 +1,11 @@
 // Grabs certain areas within the HTML
 var searchCity = $(".city-search");
 var coverImage = $(".city-image");
+var cityLabel = $(".city-state-country");
+var population = $(".population");
+var citySummary = $(".city-summary");
+var scoresLeft = $(".scores-left");
+var scoresRight = $(".scores-right");
 
 // Starting cover image until city is searched
 coverImage.css("background-image", "url('assets/images/world-image.jpg')");
@@ -42,6 +47,9 @@ function autocompleteSearch() {
     searchCity.on('keydown', (event) => {
         if (event.key === 'Enter') {
             cityImage();
+            basicInfo();
+            qualityOfLife();
+            viewFlights();
         }
     });
 }
@@ -65,6 +73,89 @@ function cityImage() {
         var backgroundImageUrl = data.photos[0].image.web;
         coverImage.css("background-image", "url(" + backgroundImageUrl + ")");
     })
+}
+
+// Function for fetching and adding the basic information from Teleport API
+function basicInfo() {
+    // Fetching the city's location to pull geonameid for the basic information API
+    var requestUrl = "https://api.teleport.org/api/cities/?search=" + searchCity.val().toLowerCase();
+
+    fetch(requestUrl)
+        .then(function (response) {
+        return response.json();
+        })
+        .then(function (data) {
+        console.log(data);
+
+        // Grabs the URL for finding out the geonameid for the basic info API
+        var geoNameIdUrl = data._embedded['city:search-results'][0]._links['city:item'].href;
+        
+        // Fetches the basic information API
+        fetch(geoNameIdUrl)
+            .then(function (response) {
+            return response.json();
+            })
+            .then(function (data) {
+            console.log(data);
+
+            cityLabel.text(data['full_name']);
+            population.text("Population: " + data.population);
+            $(".line-separator").attr("style", "display: block");
+            })
+        })
+        // Displays a message when a location doesn't match the geoNameIdUrl
+        .catch(function (error) {
+            if (error instanceof TypeError) {
+            cityLabel.text("No basic information to show for this location.");
+            population.text("");
+            $(".line-separator").attr("style", "display: block");
+            }
+        })
+}
+
+// Function for generating Quality of Life and other scores from Teleport API
+function qualityOfLife() {
+    // Since the API's link uses dashes in between words instead of spaces, we convert the spaces into dashes
+    // Also gets rid of a comma if a searched city has one
+    var convertToDashes = searchCity.val().replace(/[\s,]+/g, '-').replace(/\.+/g, '');
+
+    var requestUrl = "https://api.teleport.org/api/urban_areas/slug:" + convertToDashes.toLowerCase() + "/scores/";
+
+    fetch(requestUrl)
+    .then(function (response) {
+    return response.json();
+    })
+    .then(function (data) {
+    console.log(data);
+
+    // Rounds up the number so there's not a long decimal
+    var cityScore = data['teleport_city_score'];
+    var roundedNumber = Math.floor(cityScore);
+
+    citySummary.html(data.summary + "\n<b>City Score:</b> " + roundedNumber + "%");
+    scoresLeft.html("</p>" + data.categories[0].name + ": " + Math.floor(data.categories[1]['score_out_of_10']) + " / 10" + "</p>"
+    + "<p>" + data.categories[1].name + ": " + Math.floor(data.categories[1]['score_out_of_10']) + " / 10" + "</p>"
+    + "<p>" + data.categories[2].name + ": " + Math.floor(data.categories[2]['score_out_of_10']) + " / 10" + "</p>"
+    + "<p>" + data.categories[3].name + ": " + Math.floor(data.categories[3]['score_out_of_10']) + " / 10" + "</p>"
+    + "<p>" + data.categories[4].name + ": " + Math.floor(data.categories[4]['score_out_of_10']) + " / 10" + "</p>"
+    + "<p>" + data.categories[5].name + ": " + Math.floor(data.categories[5]['score_out_of_10']) + " / 10" + "</p>"
+    + "<p>" + data.categories[6].name + ": " + Math.floor(data.categories[6]['score_out_of_10']) + " / 10" + "</p>"
+    + "<p>" + data.categories[7].name + ": " + Math.floor(data.categories[7]['score_out_of_10']) + " / 10" + "</p>"
+    + "<p>" + data.categories[8].name + ": " + Math.floor(data.categories[8]['score_out_of_10']) + " / 10" + "</p>");
+    scoresRight.html("</p>" + data.categories[9].name + ": " + Math.floor(data.categories[9]['score_out_of_10']) + " / 10" + "</p>"
+    + "<p>" + data.categories[10].name + ": " + Math.floor(data.categories[10]['score_out_of_10']) + " / 10" + "</p>"
+    + "<p>" + data.categories[11].name + ": " + Math.floor(data.categories[11]['score_out_of_10']) + " / 10" + "</p>"
+    + "<p>" + data.categories[12].name + ": " + Math.floor(data.categories[12]['score_out_of_10']) + " / 10" + "</p>"
+    + "<p>" + data.categories[13].name + ": " + Math.floor(data.categories[13]['score_out_of_10']) + " / 10" + "</p>"
+    + "<p>" + data.categories[14].name + ": " + Math.floor(data.categories[14]['score_out_of_10']) + " / 10" + "</p>"
+    + "<p>" + data.categories[15].name + ": " + Math.floor(data.categories[15]['score_out_of_10']) + " / 10" + "</p>"
+    + "<p>" + data.categories[16].name + ": " + Math.floor(data.categories[16]['score_out_of_10']) + " / 10" + "</p>");
+    })
+}
+
+// Function for displaying button that takes you to viewing flight information from second API
+function viewFlights() {
+    $(".view-flights").attr("style", "display: block");
 }
 
 autocompleteSearch();
