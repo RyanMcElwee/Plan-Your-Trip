@@ -15,6 +15,7 @@ header {
 /* To make the h1 tag not extremely giant */
 header h1 {
     font-size: x-large;
+    text-transform: uppercase;
 }
 
 /* Properties for the input area */
@@ -26,6 +27,21 @@ input {
     text-align: center;
     font-size: 1rem;
     font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Properties for styling the h2 label */
+h2 {
+    font-size: large;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Hides the horizontal lines if no information is showing yet */
+hr {
+    display: none;
 }
 
 /* Area for the city cover image */
@@ -108,6 +124,7 @@ input {
     border-radius: 0.5rem;
     width: 29%;
     align-self: flex-end;
+    display: none;
 }
 
 /* Properties for when the buttons is hovered */
@@ -124,6 +141,31 @@ input {
     height: 125px;
     margin: 0.5rem;
     padding: 1rem;
+}
+
+/* Properties for the generated population info */
+.population {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Making some space between the information and the line */
+.city-summary {
+    margin-top: 1rem;
+}
+
+/* Container properties for the score area */
+.scores-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 1rem;
+}
+
+/* Making the scores be side-by-side since there are so many */
+.scores-left,
+.scores-right {
+    width: 50%;
 }
 
 /* Responsive breakpoints */
