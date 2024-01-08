@@ -30,6 +30,7 @@ function loadSavedSearches() {
                 cityImage(currentLocation);
                 basicInfo(currentLocation);
                 qualityOfLife(currentLocation);
+                getPOI(currentLocation);
             });
         }
     }
@@ -77,6 +78,7 @@ function searchHistory() {
                 cityImage(currentLocation);
                 basicInfo(currentLocation);
                 qualityOfLife(currentLocation);
+                getPOI(currentLocation);
             })
         }
 }
@@ -121,6 +123,7 @@ function autocompleteSearch() {
             basicInfo();
             qualityOfLife();
             searchHistory();
+            getPOI();
         }
     });
 }
@@ -225,15 +228,49 @@ function qualityOfLife() {
 }
 
 function getPOI() {
-    var requestUrl = "https://api.tomtom.com/search/2/poiCategories.json?key=QiA37G4JungEp7WmDy1eWcDe00mGbqpa";
+    // Fetching the city's location to pull geonameid for the following API
+    var requestUrl = "https://api.teleport.org/api/cities/?search=" + searchCity.val().toLowerCase();
 
     fetch(requestUrl)
-    .then(function (response) {
-    return response.json();
-    })
-    .then(function (data) {
-    console.log(data);
-    })
+        .then(function (response) {
+        return response.json();
+        })
+        .then(function (data) {
+        console.log(data);
+
+        // Grabs the URL within the data for finding out the geonameid
+        var geoNameIdUrl = data._embedded['city:search-results'][0]._links['city:item'].href;
+    
+        // Fetches the basic information API
+        fetch(geoNameIdUrl)
+            .then(function (response) {
+            return response.json();
+            })
+            .then(function (data) {
+            console.log(data);
+
+            // Fetches the lat and lon for the tomtom API
+            var lat = data.location.latlon.latitude
+            var lon = data.location.latlon.longitude
+            var key = "QiA37G4JungEp7WmDy1eWcDe00mGbqpa";
+
+            // API call URL for tomtom POIs
+            // This is call will search for restaurants
+            // We'll have to figure out the different code for the other POIs we want to pull info from
+            var PoiCall = "https://api.tomtom.com/search/2/nearbySearch/.json?lat=" + lat + "&lon=" + lon + "&radius=10000&extendedPostalCodesFor=POI&categorySet=7315&view=Unified&relatedPois=off&key=" + key;
+    
+            // Fetches the basic information API
+            fetch(PoiCall)
+                .then(function (response) {
+                return response.json();
+                })
+                .then(function (data) {
+                console.log(data);
+
+                // Put calls for certain POIs in here
+                })
+            })
+        })
 }
 
 // Loads search history upon page arrival if there are any and clear button
@@ -242,4 +279,3 @@ clearSearches();
 
 // Runs the first function to run all other functions
 autocompleteSearch();
-getPOI();
