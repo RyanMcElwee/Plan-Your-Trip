@@ -10,6 +10,79 @@ var scoresRight = $(".scores-right");
 // Starting cover image until city is searched
 coverImage.css("background-image", "url('assets/images/world-image.jpg')");
 
+// Empty array for storing searched cities
+var searchedCities = [];
+
+// Loads saved searches from local storage if it has anything
+function loadSavedSearches() {
+    // Checks if anything exists within local storage
+    // If there are contents, run this code
+    if (localStorage.getItem("teleport location")) {
+        var searchedCities = JSON.parse(localStorage.getItem("teleport location"));
+        for (var i = 0; i < searchedCities.length; i++) {
+            var button = $("<button>").addClass("city").text(searchedCities[i]);
+            $(".city-buttons").append(button);
+    
+            button.on("click", function() {
+                var buttonLocation = $(this).text();
+                // Adds the button's text to the input area
+                var currentLocation = searchCity.val(buttonLocation);
+                cityImage(currentLocation);
+                basicInfo(currentLocation);
+                qualityOfLife(currentLocation);
+                viewFlights();
+            });
+        }
+    }
+}
+
+function clearSearches() {
+    // Add clear button to clear history
+    var clearButton = $("<button>").addClass("clear-button").text("Clear");
+    $(".clear-searches").append(clearButton);
+    
+    clearButton.on("click", function() {
+        // Basically sets the page back to default
+        localStorage.clear();
+        $(".city-buttons").empty();
+        cityLabel.empty();
+        population.empty();
+        citySummary.empty();
+        scoresLeft.empty();
+        scoresRight.empty();
+        $(".view-flights").attr("style", "display: none");
+        $(".line-separator").attr("style", "display: none");
+        searchCity.val("");
+        coverImage.css("background-image", "url('assets/images/world-image.jpg')");
+    })
+}
+
+// Function for adding search history buttons
+function searchHistory() {
+    // Checks if there is already anything in local storage or keeps the array blank
+    // So it doesn't replace the local storage upon new page refresh
+    var searchedCities = JSON.parse(localStorage.getItem("teleport location")) || [];
+        // Checks if searched city already exists in the search area and adds it if it doesn't
+        if (!searchedCities.includes(searchCity.val())) {
+            searchedCities.push(searchCity.val());
+            // Add searched city to local storage in array
+            localStorage.setItem("teleport location", JSON.stringify(searchedCities));
+            // Adds city to search history area as a button
+            var button = $("<button>").addClass("city").text(searchCity.val());
+            $(".city-buttons").append(button);
+            // Gets selected city's information when clicked on
+            button.on("click", function() {
+                var buttonLocation = $(this).text();
+                // Adds the button's text to the input area
+                var currentLocation = searchCity.val(buttonLocation);
+                cityImage(currentLocation);
+                basicInfo(currentLocation);
+                qualityOfLife(currentLocation);
+                viewFlights();
+            })
+        }
+}
+
 // Function for helping the user select a proper city to match with Teleport API
 function autocompleteSearch() {
     var availableCities = [
@@ -50,6 +123,7 @@ function autocompleteSearch() {
             basicInfo();
             qualityOfLife();
             viewFlights();
+            searchHistory();
         }
     });
 }
@@ -158,4 +232,9 @@ function viewFlights() {
     $(".view-flights").attr("style", "display: block");
 }
 
+// Loads search history upon page arrival if there are any and clear button
+loadSavedSearches();
+clearSearches();
+
+// Runs the first function to run all other functions
 autocompleteSearch();
