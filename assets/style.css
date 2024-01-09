@@ -2,6 +2,7 @@
 * {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
+    background-color: rgb(227, 247, 255);
 }
 
 /* Properties for the header */
@@ -136,11 +137,25 @@ hr {
 /* Properties for the areas where TripAdvisor API information will be generated */
 .card {
     border-style: solid;
-    border-color: darkgray;
-    width: 40%;
-    height: 125px;
+    border-color: rgb(129, 130, 130);
+    background-color: rgb(150, 185, 186);
+    border-radius: 10px;
+    width: 20%;
+    height: flex;
     margin: 0.5rem;
     padding: 1rem;
+}
+.card div h3 {
+    text-align: center;
+    background-color: rgb(150, 185, 186);
+}
+
+.card div {
+    background-color: rgb(150, 185, 186);
+}
+
+.card div p {
+    background-color: rgb(150, 185, 186);
 }
 
 /* Properties for the generated population info */
