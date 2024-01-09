@@ -268,6 +268,16 @@ function getPOI() {
                 console.log(data);
 
                 // Put calls for certain POIs in here
+                  $(".restaurants0").html("<p>"+data.results[0].poi.name+"</p>"+
+                  "<p>"+data.results[0].address.freeformAddress+"</p>");
+                  $(".restaurants1").html("<p>"+data.results[1].poi.name+"</p>"+
+                  "<p>"+data.results[1].address.freeformAddress+"</p>");
+                  $(".restaurants2").html("<p>"+data.results[2].poi.name+"</p>"+
+                  "<p>"+data.results[2].address.freeformAddress+"</p>");
+                  $(".restaurants3").html("<p>"+data.results[3].poi.name+"</p>"+
+                  "<p>"+data.results[3].address.freeformAddress+"</p>");
+                  $(".restaurants4").html("<p>"+data.results[4].poi.name+"</p>"+
+                  "<p>"+data.results[4].address.freeformAddress+"</p>");
                 })
             })
         })
