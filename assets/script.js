@@ -281,8 +281,7 @@ function getPOI() {
                   $(".restaurants4").html("<p>"+data.results[4].poi.name+"</p>"+
                   "<p>"+data.results[4].address.freeformAddress+"</p>");
                 })
-            })
-            
+
             fetch(PoiHot)
                 .then(function (response) {
                 return response.json();
@@ -290,10 +289,10 @@ function getPOI() {
                 .then(function (data) {
                 console.log(data);
 
-
                 })
-             })
-        }
+        })
+    })
+}
 
 // Loads search history upon page arrival if there are any and clear button
 loadSavedSearches();
