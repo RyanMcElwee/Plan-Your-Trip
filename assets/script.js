@@ -289,6 +289,18 @@ function getPOI() {
                 .then(function (data) {
                 console.log(data);
 
+                //Calls for hotel POI are here
+                $(".hotels0").html("<p>"+data.results[0].poi.name+"</p>"+
+                "<p>"+data.results[0].address.freeformAddress+"</p>");
+                $(".hotels1").html("<p>"+data.results[1].poi.name+"</p>"+
+                "<p>"+data.results[1].address.freeformAddress+"</p>");
+                $(".hotels2").html("<p>"+data.results[2].poi.name+"</p>"+
+                "<p>"+data.results[2].address.freeformAddress+"</p>");
+                $(".hotels3").html("<p>"+data.results[3].poi.name+"</p>"+
+                "<p>"+data.results[3].address.freeformAddress+"</p>");
+                $(".hotels4").html("<p>"+data.results[4].poi.name+"</p>"+
+                "<p>"+data.results[4].address.freeformAddress+"</p>");
+
                 })
         })
     })
