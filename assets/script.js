@@ -257,17 +257,19 @@ function getPOI() {
             // API call URL for tomtom POIs
             // This is call will search for restaurants
             // We'll have to figure out the different code for the other POIs we want to pull info from
-            var PoiCall = "https://api.tomtom.com/search/2/nearbySearch/.json?lat=" + lat + "&lon=" + lon + "&radius=10000&extendedPostalCodesFor=POI&categorySet=7315&view=Unified&relatedPois=off&key=" + key;
+            var PoiRes = "https://api.tomtom.com/search/2/nearbySearch/.json?lat=" + lat + "&lon=" + lon + "&radius=30000&extendedPostalCodesFor=POI&categorySet=7315&view=Unified&relatedPois=off&key=" + key;
+            var PoiHot = "https://api.tomtom.com/search/2/nearbySearch/.json?lat=" + lat + "&lon=" + lon + "&radius=30000&extendedPostalCodesFor=POI&categorySet=7314&view=Unified&relatedPois=off&key=" + key;
     
+
             // Fetches the basic information API
-            fetch(PoiCall)
+            fetch(PoiRes)
                 .then(function (response) {
                 return response.json();
                 })
                 .then(function (data) {
                 console.log(data);
 
-                // Put calls for certain POIs in here
+                //Calls for restaurant POIs are here
                   $(".restaurants0").html("<p>"+data.results[0].poi.name+"</p>"+
                   "<p>"+data.results[0].address.freeformAddress+"</p>");
                   $(".restaurants1").html("<p>"+data.results[1].poi.name+"</p>"+
@@ -280,8 +282,18 @@ function getPOI() {
                   "<p>"+data.results[4].address.freeformAddress+"</p>");
                 })
             })
-        })
-}
+            
+            fetch(PoiHot)
+                .then(function (response) {
+                return response.json();
+                })
+                .then(function (data) {
+                console.log(data);
+
+
+                })
+             })
+        }
 
 // Loads search history upon page arrival if there are any and clear button
 loadSavedSearches();
