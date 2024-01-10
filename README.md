@@ -18,9 +18,9 @@ JavaScript
 - Ryan McElwee
 
 # User Story
-AS A traveler
-I WANT to view basic information about a city I may visit
-SO THAT I can learn about the city's Quality of Life and view nearby hotels, restaurants, entertainment and night life.
+- AS A traveler
+- I WANT to view basic information about a city I may visit
+- SO THAT I can learn about the city's Quality of Life and view nearby hotels, restaurants, entertainment and night life.
 
 # Our Starting Wireframe:
 First page wireframe for picking your city.
