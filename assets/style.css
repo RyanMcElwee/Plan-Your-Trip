@@ -43,6 +43,7 @@ h2 {
 /* Hides the horizontal lines if no information is showing yet */
 hr {
     display: none;
+    border-top: 1px solid black;
 }
 
 /* Area for the city cover image */
@@ -76,7 +77,7 @@ hr {
     font-size: 1rem;
     width: 100%;
     padding: 1rem;
-    background-color: cadetblue;
+    background-color: rgb(150, 185, 186);;
     color: white;
     border-style: none;
     margin-bottom: 0.5rem;
@@ -85,7 +86,7 @@ hr {
 
 /* Properties for when the buttons are hovered */
 .city:hover {
-    background-color: darkcyan;
+    background-color: cadetblue;
     cursor: pointer;
 }
 
@@ -94,7 +95,7 @@ hr {
     font-size: 1rem;
     width: 100%;
     padding: 1rem;
-    background-color: burlywood;
+    background-color: rgb(129, 130, 130);;
     color: white;
     border-style: none;
     margin-bottom: 0.5rem;
@@ -103,7 +104,7 @@ hr {
 
 /* Properties for clear button hover*/
 .clear-button:hover {
-    background-color: peru;
+    background-color: dimgray;
     cursor: pointer;
 }
 
@@ -114,27 +115,7 @@ hr {
     flex-direction: column;
 }
 
-/* Properties for the buttons within the information section */
-.information button {
-    font-size: 1rem;
-    padding: 1rem;
-    background-color: burlywood;
-    color: white;
-    border-style: none;
-    margin-top: 0.5rem;
-    border-radius: 0.5rem;
-    width: 29%;
-    align-self: flex-end;
-    display: none;
-}
-
-/* Properties for when the buttons is hovered */
-.information button:hover {
-    background-color: peru;
-    cursor: pointer;
-}
-
-/* Properties for the areas where TripAdvisor API information will be generated */
+/* Properties for the areas where tomtom API information will be generated */
 .card {
     border-style: solid;
     border-color: rgb(129, 130, 130);
@@ -144,17 +125,16 @@ hr {
     height: flex;
     margin: 0.5rem;
     padding: 1rem;
+    display: none;
 }
 .card div h3 {
     text-align: center;
     background-color: rgb(150, 185, 186);
 }
 
-.card div {
-    background-color: rgb(150, 185, 186);
-}
-
-.card div p {
+.card div,
+.card div p,
+.card div b {
     background-color: rgb(150, 185, 186);
 }
 
@@ -175,6 +155,7 @@ hr {
     flex-wrap: wrap;
     flex-direction: row;
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 /* Making the scores be side-by-side since there are so many */
@@ -187,6 +168,10 @@ hr {
 @media screen and (max-width: 768px) {
 .search-history {
     width: 30%
+}
+
+.card {
+    width: 40%;
 }
 
 .information {
