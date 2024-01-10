@@ -52,6 +52,7 @@ function clearSearches() {
         scoresRight.empty();
         $(".view-flights").attr("style", "display: none");
         $(".line-separator").attr("style", "display: none");
+        $(".card").attr("style", "display: none");
         searchCity.val("");
         coverImage.css("background-image", "url('assets/images/world-image.jpg')");
     })
@@ -261,7 +262,8 @@ function getPOI() {
             var PoiHot = "https://api.tomtom.com/search/2/nearbySearch/.json?lat=" + lat + "&lon=" + lon + "&radius=30000&extendedPostalCodesFor=POI&categorySet=7314&view=Unified&relatedPois=off&key=" + key;
             var PoiEnt = "https://api.tomtom.com/search/2/nearbySearch/.json?lat=" + lat + "&lon=" + lon + "&radius=30000&extendedPostalCodesFor=POI&categorySet=9900&view=Unified&relatedPois=off&key=" + key;
             var PoiNL = "https://api.tomtom.com/search/2/nearbySearch/.json?lat=" + lat + "&lon=" + lon + "&radius=30000&extendedPostalCodesFor=POI&categorySet=9379&view=Unified&relatedPois=off&key=" + key;
-    
+
+            $(".card").attr("style", "display: block");
 
             // Fetches the basic information API
             fetch(PoiRes)
@@ -272,15 +274,15 @@ function getPOI() {
                 console.log(data);
 
                 //Calls for restaurant POIs are here
-                  $(".restaurants0").html("<p>"+data.results[0].poi.name+"</p>"+
+                  $(".restaurants0").html("<p>"+"<b>"+data.results[0].poi.name+"</b>"+"</p>"+
                   "<p>"+data.results[0].address.freeformAddress+"</p>");
-                  $(".restaurants1").html("<p>"+data.results[1].poi.name+"</p>"+
+                  $(".restaurants1").html("<p>"+"<b>"+data.results[1].poi.name+"</b>"+"</p>"+
                   "<p>"+data.results[1].address.freeformAddress+"</p>");
-                  $(".restaurants2").html("<p>"+data.results[2].poi.name+"</p>"+
+                  $(".restaurants2").html("<p>"+"<b>"+data.results[2].poi.name+"</b>"+"</p>"+
                   "<p>"+data.results[2].address.freeformAddress+"</p>");
-                  $(".restaurants3").html("<p>"+data.results[3].poi.name+"</p>"+
+                  $(".restaurants3").html("<p>"+"<b>"+data.results[3].poi.name+"</b>"+"</p>"+
                   "<p>"+data.results[3].address.freeformAddress+"</p>");
-                  $(".restaurants4").html("<p>"+data.results[4].poi.name+"</p>"+
+                  $(".restaurants4").html("<p>"+"<b>"+data.results[4].poi.name+"</b>"+"</p>"+
                   "<p>"+data.results[4].address.freeformAddress+"</p>");
                 })
 
@@ -292,17 +294,16 @@ function getPOI() {
                 console.log(data);
 
                 //Calls for hotel POI are here
-                $(".hotels0").html("<p>"+data.results[0].poi.name+"</p>"+
+                $(".hotels0").html("<p>"+"<b>"+data.results[0].poi.name+"</b>"+"</p>"+
                 "<p>"+data.results[0].address.freeformAddress+"</p>");
-                $(".hotels1").html("<p>"+data.results[1].poi.name+"</p>"+
+                $(".hotels1").html("<p>"+"<b>"+data.results[1].poi.name+"</b>"+"</p>"+
                 "<p>"+data.results[1].address.freeformAddress+"</p>");
-                $(".hotels2").html("<p>"+data.results[2].poi.name+"</p>"+
+                $(".hotels2").html("<p>"+"<b>"+data.results[2].poi.name+"</b>"+"</p>"+
                 "<p>"+data.results[2].address.freeformAddress+"</p>");
-                $(".hotels3").html("<p>"+data.results[3].poi.name+"</p>"+
+                $(".hotels3").html("<p>"+"<b>"+data.results[3].poi.name+"</b>"+"</p>"+
                 "<p>"+data.results[3].address.freeformAddress+"</p>");
-                $(".hotels4").html("<p>"+data.results[4].poi.name+"</p>"+
+                $(".hotels4").html("<p>"+"<b>"+data.results[4].poi.name+"</b>"+"</p>"+
                 "<p>"+data.results[4].address.freeformAddress+"</p>");
-
                 })
 
             fetch(PoiEnt)
@@ -313,16 +314,17 @@ function getPOI() {
                 console.log(data);
 
                 //Calls for entertainment POIs are done here
-                $(".entertainment0").html("<p>"+data.results[0].poi.name+"</p>"+
+                $(".entertainment0").html("<p>"+"<b>"+data.results[0].poi.name+"</b>"+"</p>"+
                 "<p>"+data.results[0].address.freeformAddress+"</p>");
-                $(".entertainment1").html("<p>"+data.results[1].poi.name+"</p>"+
+                $(".entertainment1").html("<p>"+"<b>"+data.results[1].poi.name+"</b>"+"</p>"+
                 "<p>"+data.results[1].address.freeformAddress+"</p>");
-                $(".entertainment2").html("<p>"+data.results[2].poi.name+"</p>"+
+                $(".entertainment2").html("<p>"+"<b>"+data.results[2].poi.name+"</b>"+"</p>"+
                 "<p>"+data.results[2].address.freeformAddress+"</p>");
-                $(".entertainment3").html("<p>"+data.results[3].poi.name+"</p>"+
+                $(".entertainment3").html("<p>"+"<b>"+data.results[3].poi.name+"</b>"+"</p>"+
                 "<p>"+data.results[3].address.freeformAddress+"</p>");
-                $(".entertainment4").html("<p>"+data.results[4].poi.name+"</p>"+
+                $(".entertainment4").html("<p>"+"<b>"+data.results[4].poi.name+"</b>"+"</p>"+
                 "<p>"+data.results[4].address.freeformAddress+"</p>");
+                })
             
             fetch(PoiNL)
                 .then(function (response) {
@@ -332,22 +334,19 @@ function getPOI() {
                 console.log(data);
 
                 //Calls for Night Life POIs are done here
-                $(".night-life0").html("<p>"+data.results[0].poi.name+"</p>"+
+                $(".night-life0").html("<p>"+"<b>"+data.results[0].poi.name+"</b>"+"</p>"+
                 "<p>"+data.results[0].address.freeformAddress+"</p>");
-                $(".night-life1").html("<p>"+data.results[1].poi.name+"</p>"+
+                $(".night-life1").html("<p>"+"<b>"+data.results[1].poi.name+"</b>"+"</p>"+
                 "<p>"+data.results[1].address.freeformAddress+"</p>");
-                $(".night-life2").html("<p>"+data.results[2].poi.name+"</p>"+
+                $(".night-life2").html("<p>"+"<b>"+data.results[2].poi.name+"</b>"+"</p>"+
                 "<p>"+data.results[2].address.freeformAddress+"</p>");
-                $(".night-life3").html("<p>"+data.results[3].poi.name+"</p>"+
+                $(".night-life3").html("<p>"+"<b>"+data.results[3].poi.name+"</b>"+"</p>"+
                 "<p>"+data.results[3].address.freeformAddress+"</p>");
-                $(".night-life4").html("<p>"+data.results[4].poi.name+"</p>"+
+                $(".night-life4").html("<p>"+"<b>"+data.results[4].poi.name+"</b>"+"</p>"+
                 "<p>"+data.results[4].address.freeformAddress+"</p>");
-
-
                 })
             })
         })
-    })
 }
 
 // Loads search history upon page arrival if there are any and clear button
