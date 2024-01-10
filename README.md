@@ -8,14 +8,14 @@ An application that provides basic information and local attractions about a sel
 
 
 # Technology Used:
-HTML
-CSS
+- HTML
+- CSS
 JavaScript
-API
+- API
 
 # Contributors:
-Ashleigh Pfander
-Ryan McElwee
+- Ashleigh Pfander
+- Ryan McElwee
 
 # User Story
 AS A traveler
@@ -31,11 +31,10 @@ Second page wireframe for booking your flight.
 
 # Final Results:
 Initial page load
-![Initial site load](assets/images/InitialScreenShot.png)
+![InitialScreenShot](https://github.com/RyanMcElwee/The-Nomad-Experience/assets/149916172/91247630-01f1-41d0-ac82-35e4dd19dfe8)
 
 Example for the page with the search box opened
-![Search example](assets/images/SearchScreenShot.png)
+![SearchScreenShot](https://github.com/RyanMcElwee/The-Nomad-Experience/assets/149916172/a381fd43-8e69-45b7-b0e5-bf12c01ee044)
 
 Result from a search
-![Search result](assets/images/SearchResultScreenShot.png)
-
+![SearchResultScreenShot](https://github.com/RyanMcElwee/The-Nomad-Experience/assets/149916172/cae4474c-156f-45c0-9589-1142b2434625)
